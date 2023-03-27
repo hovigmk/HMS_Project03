@@ -13,7 +13,7 @@ const doctorSchema = new Schema({
         type: String,
         required: true,
     },
-    email: {
+    email: { // email can be interchanged if we want to use a more "hospital" like system
         type: String,
         required: true,
         unique: true,
@@ -47,7 +47,7 @@ doctorSchema.methods.isCorrectPassword = async function (password) {
     return bycrypt.compare(password, this.password);
 };
 
-// // create the Doctor model using the doctorSchema
+// create the Doctor model using the doctorSchema
 // doctorSchema.virtual('patientCount').get(function() {
 //     return this.patients.length;
 // });

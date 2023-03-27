@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const patientSchema = new Schema({
     firstName: {
@@ -25,3 +25,7 @@ const patientSchema = new Schema({
         required: true,
     },
 });
+
+const Patient = model('Patient', patientSchema);
+
+module.exports = Patient;
