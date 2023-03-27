@@ -1,15 +1,15 @@
 const { Schema, model } = require('mongoose');
 
 const patientSchema = new Schema({
-    firstName: {
+    firstNamePat: {
         type: String,
         required: true,
     },
-    lastName: {
+    lastNamePat: {
         type: String,
         required: true,
     },
-    email: {
+    emailPat: {
         type: String,
         required: true,
         unique: true,

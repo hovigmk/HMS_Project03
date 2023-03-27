@@ -3,17 +3,17 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type Doctor {
         _id: ID!
-        firstName: String!
-        lastName: String!
-        email: String!
+        firstNameDoc: String!
+        lastNameDoc: String!
+        emailDoc: String!
         patients: [Patient]
     }
 
     type Patient {
         _id: ID!
-        firstName: String!
-        lastName: String!
-        email: String!
+        firstNamePat: String!
+        lastNamePat: String!
+        emailPat: String!
         phone: String!
         appointmentDate: Date
     }

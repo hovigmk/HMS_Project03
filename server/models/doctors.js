@@ -2,18 +2,18 @@ const { Schema, model } = require('mongoose');
 const bycrypt = require('bcrypt');
 
 //import schema of patients from patients.js
-const patientsSchema = require('./patients');
+const patientsSchema = require('./Patients');
 
 const doctorSchema = new Schema({
-    firstName: {
+    firstNameDoc: {
         type: String,
         required: true,
     },
-    lastName: {
+    lastNameDoc: {
         type: String,
         required: true,
     },
-    email: { // email can be interchanged if we want to use a more "hospital" like system
+    emailDoc: { // email can be interchanged if we want to use a more "hospital" like system
         type: String,
         required: true,
         unique: true,
