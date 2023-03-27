@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bycrypt = require('bcrypt');
 
 //import schema of patients from patients.js
-const patientsSchema = require('./Patients');
+const patientsSchema = require('./Patient');
 
 const doctorSchema = new Schema({
     firstNameDoc: {
