@@ -2,18 +2,18 @@ const { Schema, model } = require('mongoose');
 const bycrypt = require('bcrypt');
 
 //import schema of patients from patients.js
-const patientsSchema = require('./patients');
+const patientsSchema = require('./Patients');
 
 const doctorSchema = new Schema({
-    firstName: {
+    firstNameDoc: {
         type: String,
         required: true,
     },
-    lastName: {
+    lastNameDoc: {
         type: String,
         required: true,
     },
-    email: {
+    emailDoc: { // email can be interchanged if we want to use a more "hospital" like system
         type: String,
         required: true,
         unique: true,
@@ -47,7 +47,7 @@ doctorSchema.methods.isCorrectPassword = async function (password) {
     return bycrypt.compare(password, this.password);
 };
 
-// // create the Doctor model using the doctorSchema
+// create the Doctor model using the doctorSchema
 // doctorSchema.virtual('patientCount').get(function() {
 //     return this.patients.length;
 // });
