@@ -1,41 +1,39 @@
-import decode from "jwt-decode";
+const jwt = require("jsonwebtoken");
 
-class AuthService {
-  getProfile() {
-    return decode(this.getToken());
-  }
+// set token secret and expiration date
+const secret = "mysecretsshhhhh";
+const expiration = "2h";
 
-  loggedIn() {
-    const token = this.getToken();
-    // If there is a token and it's not expired, return `true`
-    return token && !this.isTokenExpired(token) ? true : false;
-  }
+module.exports = {
+  // function for our authenticated routes
+  authMiddleware: function (req, res, next) {
+    // allows token to be sent via  req.query or headers
+    let token = req.query.token || req.headers.authorization;
 
-  isTokenExpired(token) {
-    // Decode the token to get its expiration time that was set by the server
-    const decoded = decode(token);
-    // If the expiration time is less than the current time (in seconds), the token is expired and we return `true`
-    if (decoded.exp < Date.now() / 1000) {
-      localStorage.removeItem("id_token");
-      return true;
+    // ["Bearer", "<tokenvalue>"]
+    if (req.headers.authorization) {
+      token = token.split(" ").pop().trim();
     }
-    // If token hasn't passed its expiration time, return `false`
-    return false;
-  }
 
-  getToken() {
-    return localStorage.getItem("id_token");
-  }
+    if (!token) {
+      return res.status(400).json({ message: "You have no token!" });
+    }
 
-  login(idToken) {
-    localStorage.setItem("id_token", idToken);
-    window.location.assign("/");
-  }
+    // verify token and get user data out of it
+    try {
+      const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      req.user = data;
+    } catch {
+      console.log("Invalid token");
+      return res.status(400).json({ message: "invalid token!" });
+    }
 
-  logout() {
-    localStorage.removeItem("id_token");
-    window.location.reload();
-  }
-}
+    // send to next endpoint
+    next();
+  },
+  signToken: function ({ firstNameDoc, emailDoc, _id }) {
+    const payload = { firstNameDoc, emailDoc, _id };
 
-export default new AuthService();
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+  },
+};
