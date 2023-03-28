@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { Doctor, Patient } = require('../models');
-// const { authToken } = require('../utils/auth');
-// Above is for the sign in token when created
+const { authToken } = require('../utils/auth');
+
 
 const resolvers = {
     Query: {
@@ -54,17 +54,15 @@ const resolvers = {
                 throw new AuthenticationError('Incorrect credentials');
             }
 
-            // Auth must be complete before next 2 lines will work
-            //const token = signToken(user);
-            //return { token, user };
+            const token = authToken(user);
+            return { token, user };
         },
         //Signup mutation for new doctor
         addDoctor: async (parent, args) => {
             const user = await Doctor.create(args);
 
-            // Waiting for auth completion 
-            // const token = signToken(user);
-            // return { token, user };
+            const token = authToken(user);
+            return { token, user };
         },
         //Add patient to doctor's list
         addPatient: async (parent, { patientData }, context) => {
