@@ -1,0 +1,27 @@
+.dashMain {
+    border-radius: 20px;
+    background-color: #ffffff;
+    margin-top: 60px;
+    margin-right: 10px;
+}
+
+.caSection {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #cfcfcf;
+}
+
+.quickTabs {
+    margin: 00px 10px;
+    border-radius: 20px;
+    background: rgb(62, 54, 128);
+    background: linear-gradient(220deg, rgba(62, 54, 128, 1) 35%, rgba(166, 222, 247, 1) 100%);
+}
+
+.cards {
+    border-radius: 20px;
+}
+
+.cardNumber{
+    margin-top: -10px;
+}
