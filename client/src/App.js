@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import './App.css';
-import SignIn from './Pages/Signin/Signin';
-import SignUp from './Pages/Signup/Signup';
-import Dashboard from './Pages/Dashboard/Dashboard';
-import Navbar from './Component/Navbar';
+import React, { useState } from "react";
+import "./App.css";
+import SignIn from "../src/pages/Login";
+import SignUp from "../src/pages/Signup";
+import Dashboard from "../src/pages/Dashboard/Dashboard";
+import Navbar from "./Component/Navbar";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('SignIn');
+  const [currentPage, setCurrentPage] = useState("SignIn");
 
   const renderPage = () => {
-    if (currentPage === 'SignIn') {
+    if (currentPage === "SignIn") {
       return <SignIn />;
-    } if (currentPage === 'SignUp') {
+    }
+    if (currentPage === "SignUp") {
       return <SignUp />;
     }
     return <Dashboard />;
