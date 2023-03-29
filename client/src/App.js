@@ -1,12 +1,28 @@
+import React, { useState } from 'react';
 import './App.css';
-import Appointment from './Components/Pages/Appointment/Appointment';
-import Signin from './Components/Pages/Signin/Signin';
-import HeadingContainer from './Components/HeadingContainer';
+import SignIn from './Pages/Signin/Signin';
+import SignUp from './Pages/Signup/Signup';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import Navbar from './Component/Navbar';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('SignIn');
+
+  const renderPage = () => {
+    if (currentPage === 'SignIn') {
+      return <SignIn />;
+    } if (currentPage === 'SignUp') {
+      return <SignUp />;
+    }
+    return <Dashboard />;
+  };
+
+  const handlePageChange = (page) => setCurrentPage(page);
+
   return (
-    <div className="App">
-      <HeadingContainer />
+    <div>
+      <Navbar currentPage={currentPage} handlePageChange={handlePageChange} />
+      {renderPage()}
     </div>
   );
 }
