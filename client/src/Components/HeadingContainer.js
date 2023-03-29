@@ -5,11 +5,11 @@ import Signin from "../pages/Login";
 import Signup from "../pages/Signup";
 
 export default function HeadingContainer() {
-  const [currentPage, setCurrentPage] = useState("Appointment");
+  const [currentPage, setCurrentPage] = useState("Signin");
 
   const renderPage = () => {
-    if (currentPage === "Appointment") {
-      return <Appointment />;
+    if (currentPage === "Signin") {
+      return <Signin />;
     }
     if (currentPage === "Signin") {
       return <Signin />;
