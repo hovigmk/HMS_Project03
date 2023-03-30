@@ -18,6 +18,15 @@ export const QUERY_USER = gql`
     }
   }
 `;
+export const QUERY_DOCTORS = gql`
+  query user($firstname: String!, $lastname: String! ) {
+    user(firstNameDoc: $firstname
+        lastNameDoc: $lastname 
+        ) {
+      _id
+      firstNameDoc
+      lastNameDoc
+        }`;
 
 export const QUERY_PATIENTS = gql`
   query getPatients {
