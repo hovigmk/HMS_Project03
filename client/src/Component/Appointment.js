@@ -1,50 +1,112 @@
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
+
+import {useMutation} from '@apollo/client';
+import {ADD_PATIENT} from '../../utils/mutations';
+
+import Auth from '../../utils/auth';
 
 const Appointment = () => {
 
-    const [record, setRecord] = useState([])
+    const [formData, setFormData] = useState({ firstname: '', lastname: '', email: '', phone: '', appointment: '' });
+    
+    const [validated] = useState(false);
 
-    const getData = () => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(resposne => resposne.json())
-            .then(res => setRecord(res))
-    }
+    const [addPatient, { error }] = useMutation(ADD_PATIENT);
 
-    useEffect(() => {
-        getData();
-    },)
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({ ...userFormData, [name]: value });
+      };
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formData);
+
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        try {
+            const { data } = await addPatient({
+                variables: { ...formData }
+            });
+            Auth.login(data.addPatient.token);
+        } catch (e) {
+            console.error(e);
+        }
+
+    };
+    
     return (
-        <div class="col-lg-12 col-md-6 col-sm-12 ">
-            <h2 class="title mt-3 mb-3 text-center text-secondary text center">
-                All Appointments [ New/Completed]
-            </h2>
-            <div class="table-responsive caSection">
-                <table class="table table-striped">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Patient Name</th>
-                            <th>Doctor</th>
-                            <th>Date/Time</th>
-                            <th>Age</th>
-                            <th>Reschedule</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {record.slice(0, 7).map((output) =>
-                            <tr>
-                                <td>{output.id}</td>
-                                <td>{output.name}</td>
-                                <td>{output.email}</td>
-                                <td>{output.username}</td>
-                                <td>{output.website}</td>
-                                <td></td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    )
+    
+    <Form noValidate validated ={validated} onSubmit={handleFormSubmit}>
+        <Form.Group>
+            <Form.Label>First Name</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="firstname"
+                    value={formData.firstname}
+                    onChange={handleInputChange}
+                    placeholder="First Name"
+                    required
+                    />
+        </Form.Group>
+        <Form.Group>
+            <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="lastname"
+                    value={formData.lastname}
+                    onChange={handleInputChange}
+                    placeholder="Last Name"
+                    required
+                />
+        </Form.Group>
+        <Form.Group>
+            <Form.Label>Email</Form.Label>
+                <Form.Control
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Email"
+                    required
+                    />
+        </Form.Group>
+        <Form.Group>
+            <Form.Label>Phone</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Phone"
+                    required
+                    />
+        </Form.Group>
+        <Form.Group>
+            <Form.Label>Appointment Date</Form.Label>
+                <Form.Control
+                    type="date"
+                    name="appointment"
+                    value={formData.appointment}
+                    onChange={handleInputChange}
+                    placeholder="Appointment Date"
+                    required
+                    />
+        </Form.Group>
+            <Button 
+                disabled={!(formData.firstname && formData.lastname && formData.email && formData.phone && formData.appointment)}
+                type="submit" 
+                variant="primary">
+                    Submit
+            </Button>
+    </Form>
+
+    );
 }
 
 export default Appointment
