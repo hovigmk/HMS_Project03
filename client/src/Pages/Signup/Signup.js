@@ -1,42 +1,50 @@
-import React from 'react';
-import Image from '../../Source/Image/doctor.png';
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from "react-bootstrap/Image";
+import ImageDoctor from '../../Source/Image/doctor.png';
 
 export default function Signup() {
     return (
-        <div >
-            <div class="row m-5">
-                <div class="col-md-5 p-5">
-                    <form className='bg-white border p-5'>
-                        <h2 className='text-center mb-5'>Hi! Wellcome Back 👋</h2>
-                        <div class="mb-3">
-                            <label for="" class="form-label">First Name</label>
-                            <input type="name" class="form-control" id="fName" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Last Name</label>
-                            <input type="name" class="form-control" id="lName" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Re-Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" />
-                        </div>
-                        <button className='btn btn-primary'>Sign In</button>
-                    </form>
-                </div>
-                <div class="col-md-7 text-center pt-5" >
+        <Container>
+            <Row>
+                <Col>
+                    <Form className='bg-white border p-5'>
+                        <Form.Label className='xxl bgcolor'>Hi, Welcome 👋</Form.Label>
+                        <Form.Group className="mb-3 bgcolor" controlId="formBasicName">
+                            <Form.Label className='bgcolor'>First Name</Form.Label>
+                            <Form.Control type="name" placeholder="First Name" />
+                        </Form.Group>
+                        <Form.Group className="mb-3 bgcolor" controlId="formBasicName">
+                            <Form.Label className='bgcolor'>Last Name</Form.Label>
+                            <Form.Control type="name" placeholder="Last Name" />
+                        </Form.Group>
+                        <Form.Group className="mb-3 bgcolor" controlId="formBasicEmail">
+                            <Form.Label className='bgcolor'>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="Enter email" />
+                            <Form.Text className="text-muted bgcolor">
+                                We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3 bgcolor" controlId="formBasicPassword">
+                            <Form.Label className='bgcolor'>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            Sign Up
+                        </Button>
+                    </Form>
+                </Col>
+                <Col className='text-center'>
                     <h1 className='text-center text-white'>New Here?</h1>
                     <h2 className='text-center text-white mb-5'>Sign up and discover a grate things.</h2>
-                    <img src={Image} alt="Image" />
-                </div>
-            </div>
-        </div>
+                    <Image src={ImageDoctor} alt="Image" />
+                </Col>
+            </Row>
+        </Container>
     );
 } 
