@@ -7,24 +7,62 @@ import Col from 'react-bootstrap/Col';
 import Image from "react-bootstrap/Image";
 import ImageDoctor from '../../Source/Image/doctor.png';
 
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_PROFILE } from '../utils/mutations';
+import Auth from '../utils/auth';
+
 export default function Signup() {
+    const [formState, setFormState] = useState({
+        fname: '',
+        lname: '',
+        email: '',
+        password: '',
+    });
+    const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
+
+    // update state based on form input changes
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
+
+    // submit form
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formState);
+
+        try {
+            const { data } = await addProfile({
+                variables: { ...formState },
+            });
+
+            Auth.login(data.addProfile.token);
+        } catch (e) {
+            console.error(e);
+        }
+    };
     return (
         <Container>
             <Row>
                 <Col>
-                    <Form className='bg-white border p-5'>
+                    <Form className='bg-white border p-5' onSubmit={handleFormSubmit}>
                         <Form.Label className='xxl bgcolor'>Hi, Welcome 👋</Form.Label>
                         <Form.Group className="mb-3 bgcolor" controlId="formBasicName">
                             <Form.Label className='bgcolor'>First Name</Form.Label>
-                            <Form.Control type="name" placeholder="First Name" />
+                            <Form.Control type="name" placeholder="First Name" value={formState.fname} onChange={handleChange}/>
                         </Form.Group>
                         <Form.Group className="mb-3 bgcolor" controlId="formBasicName">
                             <Form.Label className='bgcolor'>Last Name</Form.Label>
-                            <Form.Control type="name" placeholder="Last Name" />
+                            <Form.Control type="name" placeholder="Last Name" value={formState.lname} onChange={handleChange}/>
                         </Form.Group>
                         <Form.Group className="mb-3 bgcolor" controlId="formBasicEmail">
                             <Form.Label className='bgcolor'>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
+                            <Form.Control type="email" placeholder="Enter email" value={formState.email} onChange={handleChange}/>
                             <Form.Text className="text-muted bgcolor">
                                 We'll never share your email with anyone else.
                             </Form.Text>
@@ -32,7 +70,7 @@ export default function Signup() {
 
                         <Form.Group className="mb-3 bgcolor" controlId="formBasicPassword">
                             <Form.Label className='bgcolor'>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
+                            <Form.Control type="password" placeholder="******" value={formState.password} onChange={handleChange}/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             Sign Up
