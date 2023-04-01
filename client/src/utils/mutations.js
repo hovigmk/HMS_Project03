@@ -13,50 +13,56 @@ export const LOGIN_USER = gql`
   }
 `;
 
-// export const ADD_USER = gql`
-//   mutation addUser(
-//     $firstname: String!
-//     $lastname: String!
-//     $email: String!
-//     $password: String!
-//   ) {
-//     addUser(
-//       firstNameDoc: $firstname
-//       lastNameDoc: $lastname
-//       email: $email
-//       password: $password
-//     ) {
-//       token
-//       user {
-//         _id
-//         firstNameDoc
-//         lastNameDoc
-//       }
-//     }
-//   }
-// `;
+export const ADD_USER = gql`
+  mutation addUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    addUser(
+      firstNameDoc: $firstName
+      lastNameDoc: $lastName
+      email: $email
+      password: $password
+    ) {
+      token
+      user {
+        _id
+        firstNameDoc
+        lastNameDoc
+      }
+    }
+  }
+`;
 
-// export const ADD_PATIENT = gql`
-//   mutation addThought(
-//     $patfirstname: String!
-//     $patlastname: String!
-//     $patemail: String!
-//     $patphone: String!
-//     $patappointment: String!
-//   ) {
-//     addPatient(
-//       firstnamePat: $patfirstname
-//       lastNamePat: $patlastname
-//       emailPat: $patemail
-//       phone: $patphone
-//       appointmentDate: $patappointment
-//     ) {
-//       _id
-//       firstnamePat
-//       lastNamePat
-//       emailPat
-//       phone
-//       appointmentDate
-//     }
-//   }
-// `;
+export const ADD_PATIENT = gql`
+  mutation addPatient(
+    $patFirstName: String!
+    $patLastName: String!
+    $patEmail: String!
+    $patPhone: String
+    $patAppointment: String!
+    $patAppTime: String!
+    $appDes: String!
+  ) {
+    addPatient(
+      firstNamePat: $patFirstName
+      lastNamePat: $patLastName
+      emailPat: $patEmail
+      phone: $patPhone
+      appointmentDate: $patAppointment
+      time: $patAppTime
+      description: $appDes
+    ) {
+      _id
+      firstNamePat
+      lastNamePat
+      emailPat
+      phone
+      appointmentDate
+      time
+      description
+    }
+  }
+`;

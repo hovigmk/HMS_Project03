@@ -13,6 +13,8 @@ export const QUERY_USER = gql`
         emailPat
         phone
         appointmentDate
+        time
+        description
       }
     }
   }
@@ -36,6 +38,8 @@ export const QUERY_PATIENTS = gql`
       emailPat
       phone
       appointmentDate
+      time
+      description
     }
   }
 `;
@@ -70,6 +74,8 @@ export const QUERY_ME = gql`
         emailPat
         phone
         appointmentDate
+        time
+        description
       }
     }
   }

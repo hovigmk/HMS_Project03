@@ -9,8 +9,8 @@ import {
 import { setContext } from "@apollo/client/link/context";
 
 import "./App.css";
-//import SignIn from "./Pages/Signin/Signin";
-//import SignUp from "./Pages/Signup/Signup";
+import SignIn from "./pages/Login";
+import SignUp from "./pages/Signup";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Navbar from "./Component/Navbar";
 const httpLink = createHttpLink({
@@ -43,9 +43,9 @@ function App() {
         <div className="flex-column justify-center align-center min-100-vh">
           <Navbar />
           <Routes>
-            {/* <Route path="/" element={<SignIn />} /> */}
-            {/* <Route path="/SignUp" element={<SignUp />} /> */}
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<SignIn />} />
+            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/Dashboard" element={<Dashboard />} />
           </Routes>
         </div>
       </Router>

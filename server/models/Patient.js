@@ -24,6 +24,14 @@ const patientSchema = new Schema({
         type: Date,
         required: true,
     },
+    time: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    }
 });
 
 const Patient = model('Patient', patientSchema);

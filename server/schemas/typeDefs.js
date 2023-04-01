@@ -15,7 +15,9 @@ const typeDefs = gql`
     lastNamePat: String!
     emailPat: String!
     phone: String!
-    appointmentDate: String
+    appointmentDate: String!
+    time: String!
+    description: String!
   }
 
   type Auth {
@@ -28,7 +30,9 @@ const typeDefs = gql`
     lastName: String!
     email: String!
     phone: String!
-    appointmentDate: String
+    appointmentDate: String!
+    time: String!
+    description: String!
   }
 
   type Query {
