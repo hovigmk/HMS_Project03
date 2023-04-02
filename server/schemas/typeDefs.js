@@ -6,7 +6,7 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    patients: [Patient]!
+    appointments: [Appointment]!
   }
 
   type Appointment {
@@ -18,6 +18,7 @@ const typeDefs = gql`
     appointmentDate: String!
     time: String!
     description: String!
+    duration: String!
   }
 
   type Auth {
@@ -46,7 +47,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addAppointment(appointmentDate: String!, time: String!, lastNamePat: String!): Appointment
+    addAppointment( firstNamePat: String!, lastNamePat: String!, emailPat: String!,phone: String!, appointmentDate: String!, time: String!,  description: String!, duration: String!): Appointment
     removeAppointment(appointmentId: ID!): Appointment
   }
 `;

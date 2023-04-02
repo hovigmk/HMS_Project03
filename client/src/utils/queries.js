@@ -15,6 +15,7 @@ export const QUERY_USER = gql`
         appointmentDate
         time
         description
+        duration
       }
     }
   }
@@ -40,6 +41,7 @@ export const QUERY_APPOINTMENTS = gql`
       appointmentDate
       time
       description
+      duration
       createdAt
     }
   }
@@ -56,6 +58,7 @@ export const QUERY_SINGLE_APPOINTMENT = gql`
       appointmentDate
       time
       description
+      duration
       createdAt
     }
   }
@@ -76,6 +79,7 @@ export const QUERY_ME = gql`
         appointmentDate
         time
         description
+        duration
         createdAt
       }
     }

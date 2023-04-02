@@ -36,6 +36,10 @@ const appointmentSchema = new Schema({
     type: String,
     required: true,
   },
+  duration: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

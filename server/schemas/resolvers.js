@@ -53,9 +53,14 @@ const resolvers = {
     addAppointment: async (parent, { patientData }, context) => {
       if (context.user) {
         const appointment = await Appointment.create({
+          firstNamePat,
+          lastNamePat: context.user.username,
+          emailPat,
+          phone,
           appointmentDate,
           time,
-          lastNamePat: context.user.username,
+          description,
+          duration,
         });
         await User.findOneAndUpdate(
           { _id: context.user._id },

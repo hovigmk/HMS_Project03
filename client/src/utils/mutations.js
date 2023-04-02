@@ -24,8 +24,8 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_PATIENT = gql`
-  mutation addPatient(
+export const ADD_APPOINTMENT = gql`
+  mutation addAppointment(
     $patFirstName: String!
     $patLastName: String!
     $patEmail: String!
@@ -33,8 +33,9 @@ export const ADD_PATIENT = gql`
     $patAppointment: String!
     $patAppTime: String!
     $appDes: String!
+    $duration: String!
   ) {
-    addPatient(
+    addAppointment(
       firstNamePat: $patFirstName
       lastNamePat: $patLastName
       emailPat: $patEmail
@@ -42,6 +43,7 @@ export const ADD_PATIENT = gql`
       appointmentDate: $patAppointment
       time: $patAppTime
       description: $appDes
+      duration: $duration
     ) {
       _id
       firstNamePat
@@ -51,6 +53,7 @@ export const ADD_PATIENT = gql`
       appointmentDate
       time
       description
+      duration
     }
   }
 `;
