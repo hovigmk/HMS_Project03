@@ -1,11 +1,11 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-  query user($firstName: String!, $lastName: String!) {
-    user(firstNameDoc: $firstName, lastNameDoc: $lastName) {
+  query user($username: String!) {
+    user(username: $username) {
       _id
-      firstNameDoc
-      lastNameDoc
+      username
+      email
       patients {
         _id
         firstNamePat
@@ -19,12 +19,12 @@ export const QUERY_USER = gql`
     }
   }
 `;
-export const QUERY_DOCTORS = gql`
-  query user($firstName: String!, $lastName: String!) {
-    user(firstNameDoc: $firstName, lastNameDoc: $lastName) {
+export const QUERY_USERS = gql`
+  query getusers {
+    users {
       _id
-      firstNameDoc
-      lastNameDoc
+      username
+      email
     }
   }
 `;
@@ -65,8 +65,8 @@ export const QUERY_ME = gql`
   query me {
     me {
       _id
-      firstNameDoc
-      lastNameDoc
+      username
+      email
       patients {
         _id
         firstNamePat

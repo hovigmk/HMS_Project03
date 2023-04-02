@@ -1,27 +1,27 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { Doctor, Patient } = require("../models");
-const { authToken } = require("../utils/auth");
+const { User, Patient } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     //While doctor is logged in, get all doctors
-    doctors: async (parent, args, context) => {
+    users: async (parent, args, context) => {
       if (context.user) {
-        const doctorData = await Doctor.find({})
+        const userData = await User.find({})
           .select("-__v -password")
           .populate("patients");
 
-        return doctorData;
+        return userData;
       }
 
       throw new AuthenticationError("Not logged in");
     },
     //While doctor is logged in, get doctor by id
-    doctor: async (parent, args, context) => {
+    user: async (parent, args, context) => {
       if (context.user) {
-        const doctorData = await Doctor.findOne({ _id: context.user._id });
+        const userData = await User.findOne({ _id: context.user._id });
 
-        return doctorData;
+        return userData;
       }
 
       throw new AuthenticationError("Not logged in");
@@ -38,35 +38,34 @@ const resolvers = {
     },
   },
 
+  //Doctor login with email and password
   Mutation: {
-    //Doctor login with email and password
-    login: async (parent, { email, password }) => {
-      const user = await Doctor.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const correctPassword = await user.isCorrectPassword(password);
-
-      if (!correctPassword) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const token = authToken(user);
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
       return { token, user };
     },
-    //Signup mutation for new doctor
-    addDoctor: async (parent, args) => {
-      const user = await Doctor.create(args);
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
-      const token = authToken(user);
+      if (!user) {
+        throw new AuthenticationError("No user found with this email address");
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const token = signToken(user);
+
       return { token, user };
     },
     //Add patient to doctor's list
     addPatient: async (parent, { patientData }, context) => {
       if (context.user) {
-        const updatedUser = await Doctor.findOneAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $push: { patients: patientData } },
           { new: true }
@@ -80,7 +79,7 @@ const resolvers = {
     //Remove patient from doctor's list
     removePatient: async (parent, { patientId }, context) => {
       if (context.user) {
-        const updatedUser = await Doctor.findOneAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { patients: { patientId } } },
           { new: true }

@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
@@ -7,17 +6,22 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import "./App.css";
-import SignIn from "./pages/Login";
-import SignUp from "./pages/Signup";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import Navbar from "./Component/Navbar";
+import Home from "./Component/Home";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+// import SingleThought from "./pages/SingleAppointment";
+// import Profile from "./pages/Profile";
+import Header from "./Component/Header";
+// import Footer from "./components/Footer";
+
+// Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
 
-//Construct request middleware that will attach the JWT token to every request as an `authorization` header
+// Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem("id_token");
@@ -40,13 +44,28 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-center align-center min-100-vh">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<SignIn />} />
-            <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/Dashboard" element={<Dashboard />} />
-          </Routes>
+        <div className="flex-column justify-flex-start min-100-vh">
+          <Header />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Signup />} />
+              {/* <Route 
+                path="/me" 
+                element={<Profile />}
+              /> */}
+              {/* <Route 
+                path="/profiles/:username" 
+                element={<Appointments />}
+              /> */}
+              {/* <Route 
+                path="/thoughts/:thoughtId" 
+                element={<SingleAppointment />}
+              /> */}
+            </Routes>
+          </div>
+          {/* <Footer /> */}
         </div>
       </Router>
     </ApolloProvider>
