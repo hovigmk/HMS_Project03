@@ -6,7 +6,7 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      patients {
+      appointments {
         _id
         firstNamePat
         lastNamePat
@@ -29,9 +29,9 @@ export const QUERY_USERS = gql`
   }
 `;
 
-export const QUERY_PATIENTS = gql`
-  query getPatients {
-    patients {
+export const QUERY_APPOINTMENTS = gql`
+  query getAppointments {
+    appointments {
       _id
       firstNamePat
       lastNamePat
@@ -40,26 +40,26 @@ export const QUERY_PATIENTS = gql`
       appointmentDate
       time
       description
+      createdAt
     }
   }
 `;
 
-// export const QUERY_SINGLE_PATIENT = gql`
-//   query getSingleThought($patientId: ID!) {
-//     thought(patientId: $patientId) {
-//       _id
-//       thoughtText
-//       thoughtAuthor
-//       createdAt
-//       comments {
-//         _id
-//         commentText
-//         commentAuthor
-//         createdAt
-//       }
-//     }
-//   }
-// `;
+export const QUERY_SINGLE_APPOINTMENT = gql`
+  query getSingleAppointment($appointmentId: ID!) {
+    appointment(appointmentId: $appointmentId) {
+      _id
+      firstNamePat
+      lastNamePat
+      emailPat
+      phone
+      appointmentDate
+      time
+      description
+      createdAt
+    }
+  }
+`;
 
 export const QUERY_ME = gql`
   query me {
@@ -76,6 +76,7 @@ export const QUERY_ME = gql`
         appointmentDate
         time
         description
+        createdAt
       }
     }
   }

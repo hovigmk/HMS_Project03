@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 // import SingleThought from "./pages/SingleAppointment";
 // import Profile from "./pages/Profile";
 import Header from "./Component/Header";
+import Profile from "./Component/Profile";
 // import Footer from "./components/Footer";
 
 // Construct our main GraphQL API endpoint
@@ -48,21 +49,15 @@ function App() {
           <Header />
           <div className="container">
             <Routes>
-              <Route path="/" element={<Home />} />
+              {/* <Route path="/" element={<Home />} /> */}
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<Signup />} />
-              {/* <Route 
-                path="/me" 
-                element={<Profile />}
-              /> */}
-              {/* <Route 
-                path="/profiles/:username" 
-                element={<Appointments />}
-              /> */}
-              {/* <Route 
-                path="/thoughts/:thoughtId" 
+              <Route path="/me" element={<Profile />} />
+              <Route path="/profiles/:username" element={<Profile />} />
+              <Route
+                path="/appointments/:appointmentId"
                 element={<SingleAppointment />}
-              /> */}
+              />
             </Routes>
           </div>
           {/* <Footer /> */}

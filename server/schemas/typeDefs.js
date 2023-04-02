@@ -9,7 +9,7 @@ const typeDefs = gql`
     patients: [Patient]!
   }
 
-  type Patient {
+  type Appointment {
     _id: ID!
     firstNamePat: String!
     lastNamePat: String!
@@ -25,29 +25,29 @@ const typeDefs = gql`
     user: User
   }
 
-  input PatientInput {
-    firstName: String!
-    lastName: String!
-    email: String!
-    phone: String!
-    appointmentDate: String!
-    time: String!
-    description: String!
-  }
+  // input PatientInput {
+  //   firstName: String!
+  //   lastName: String!
+  //   email: String!
+  //   phone: String!
+  //   appointmentDate: String!
+  //   time: String!
+  //   description: String!
+  // }
 
   type Query {
     users: [User]
     user(username: String!): User
-    patients(username: String): [Patient]
-    patient(patientId: ID!): Patient
+    appointments(username: String): [Appointment]
+    appointment(appointmentId: ID!): Appointment
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addPatient(patientData: PatientInput!): User
-    removePatient(patientId: ID!): User
+    addAppointment(appointmentDate: String!, time: String!, lastNamePat: String!): Appointment
+    removeAppointment(appointmentId: ID!): Appointment
   }
 `;
 
