@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
+const mongoose = require("mongoose");
 
 const appointmentSchema = new Schema({
   firstNamePat: {
@@ -25,6 +26,10 @@ const appointmentSchema = new Schema({
     ],
   },
   appointmentDate: {
+    type: Date,
+    required: true,
+  },
+  time: {
     type: String,
     required: true,
   },

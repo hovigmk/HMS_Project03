@@ -10,19 +10,18 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate("appointments");
     },
-    appointments: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Appointment.find(params).sort({ createdAt: -1 });
+    appointments: async () => {
+      return Appointment.find().populate("user");
     },
-    appointment: async (parent, { appointmentId }) => {
-      return Appointment.findOne({ _id: appointmentId });
+    appointment: async (parent, { id }) => {
+      return await Appointment.findById(id).populate("user");
     },
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("appointments");
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
+    // me: async (parent, args, context) => {
+    //   if (context.user) {
+    //     return User.findOne({ _id: context.user._id }).populate("appointments");
+    //   }
+    //   throw new AuthenticationError("You need to be logged in!");
+    // },
   },
 
   //Doctor login with email and password
@@ -50,55 +49,29 @@ const resolvers = {
       return { token, user };
     },
     //Add patient to doctor's list
-    addAppointment: async (
-      parent,
-      { firstNamePat },
-      { lastNamePat },
-      { emailPat },
-      { phone },
-      { appointmentDate },
-      { time },
-      { description },
-      { duration },
-      context
-    ) => {
-      if (context.user) {
-        const appointment = await Appointment.create({
-          firstNamePat,
-          lastNamePat: context.user.username,
-          emailPat,
-          phone,
-          appointmentDate,
-          time,
-          description,
-          duration,
-        });
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { appointments: appointment._id } }
-        );
+    addAppointment: async (parent, args) => {
+      console.log(args);
+      const appointment = new Appointment(args);
+      await appointment.save();
 
-        return appointment;
-      }
+      const userId = appointment.user;
+      const appointmentId = appointment._id;
 
-      throw new AuthenticationError("You need to be logged in!");
+      await User.updateOne(
+        { _id: userId },
+        { $push: { appointments: appointmentId } }
+      );
+      console.log(User);
+      return appointment;
     },
-    //Remove patient from doctor's list
-    removeAppointment: async (parent, { appointmentId }, context) => {
-      if (context.user) {
-        const appointment = await Appointment.findOneAndDelete({
-          _id: appointmentId,
-          lastNamePat: context.user.username,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { appointments: appointment._id } }
-        );
-        return appointment;
-      }
-
-      throw new AuthenticationError("You need to be logged in!");
+    // updateAppointment: async (parent, { id, ...rest }) => {
+    //   return await Appointment.findByIdAndUpdate(id, rest, {
+    //     new: true,
+    //   }).populate("user");
+    // },
+    removeAppointment: async (parent, { id }) => {
+      await Appointment.findByIdAndRemove(id);
+      return true;
     },
   },
 };

@@ -29,7 +29,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    appointments(username: String): [Appointment]
+    appointments: [Appointment]!
     appointment(appointmentId: ID!): Appointment
     me: User
   }
@@ -48,6 +48,10 @@ const typeDefs = gql`
       duration: String!
     ): Appointment
     removeAppointment(appointmentId: ID!): Appointment
+  }
+  schema {
+    query: Query
+    mutation: Mutation
   }
 `;
 

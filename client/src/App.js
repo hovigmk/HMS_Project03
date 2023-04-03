@@ -13,8 +13,10 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import SingleAppointment from "./Component/SingleAppointment";
 
-import Header from "./Component/Header";
-import Profile from "./Component/Profile";
+import Navbar from "./Component/Navbar";
+import AddAppointment from "./Component/AddAppointment";
+import AppointmentList from "./Component/AppointmentList";
+// import Profile from "./Component/Profile";
 // import Footer from "./components/Footer";
 
 // Construct our main GraphQL API endpoint
@@ -46,14 +48,16 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
+          <Navbar />
           <div className="container">
             <Routes>
-              {/* <Route path="/" element={<Home />} /> */}
+              <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/" element={<Signup />} />
-              <Route path="/me" element={<Profile />} />
-              <Route path="/profiles/:username" element={<Profile />} />
+              <Route path="/Signup" element={<Signup />} />
+
+              <Route path="/AppointmentList" element={<AppointmentList />} />
+
+              <Route path="/addAppointment" element={<AddAppointment />} />
               <Route
                 path="/appointments/:appointmentId"
                 element={<SingleAppointment />}
