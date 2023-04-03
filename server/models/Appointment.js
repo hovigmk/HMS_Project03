@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const dateFormat = require('../utils/dateFormat');
+const dateFormat = require("../utils/dateFormat");
 
 const appointmentSchema = new Schema({
   firstNamePat: {
@@ -25,7 +25,7 @@ const appointmentSchema = new Schema({
     ],
   },
   appointmentDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   time: {

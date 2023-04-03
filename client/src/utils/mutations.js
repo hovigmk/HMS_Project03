@@ -29,7 +29,7 @@ export const ADD_APPOINTMENT = gql`
     $firstNamePat: String!
     $lastNamePat: String!
     $emailPat: String!
-    $phone: String
+    $phone: String!
     $appointmentDate: String!
     $time: String!
     $description: String!

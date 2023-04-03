@@ -1,40 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const AppointmentList = ({
-  appointments,
-  title,
-  showTitle = true,
-  showUsername = true,
-}) => {
+const AppointmentList = ({ appointments = [] }) => {
   if (!appointments.length) {
     return <h3>No appointments Yet</h3>;
   }
 
   return (
     <div>
-      {showTitle && <h3>{title}</h3>}
       {appointments &&
         appointments.map((appointment) => (
           <div key={appointment._id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
-              {showUsername ? (
-                <Link
-                  className="text-light"
-                  to={`/profiles/${appointment.lastNamePat}`}
-                >
-                  {appointment.appointmentAuthor} <br />
-                  <span style={{ fontSize: '1rem' }}>
-                    had this appointment on {appointment.createdAt}
+              <div className="p-3 bg-dark text-light">
+                <h5 className="card-header">
+                  {appointment.firstNamePat} commented{" "}
+                  <span style={{ fontSize: "0.825rem" }}>
+                    on {appointment.appointmentDate} and at {appointment.time}
                   </span>
-                </Link>
-              ) : (
-                <>
-                  <span style={{ fontSize: '1rem' }}>
-                    You had this appointment on {appointment.createdAt}
-                  </span>
-                </>
-              )}
+                </h5>
+                <p className="card-body">{appointment.description}</p>
+              </div>
             </h4>
             <div className="card-body bg-light p-2">
               <p>{appointment.description}</p>
