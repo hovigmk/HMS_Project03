@@ -28,10 +28,6 @@ const appointmentSchema = new Schema({
     type: String,
     required: true,
   },
-  time: {
-    type: String,
-    required: true,
-  },
   description: {
     type: String,
     required: true,
@@ -45,8 +41,12 @@ const appointmentSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
-const Appointment = model("Appointment", appointmentSchema);
+const Appointment = mongoose.model("Appointment", appointmentSchema);
 
 module.exports = Appointment;
