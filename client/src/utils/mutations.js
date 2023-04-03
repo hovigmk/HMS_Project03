@@ -2,61 +2,55 @@ import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
-    login(emailDoc: $email, password: $password) {
+    login(email: $email, password: $password) {
       token
       user {
         _id
-        firstNameDoc
-        lastNameDoc
+        username
       }
     }
   }
 `;
 
 export const ADD_USER = gql`
-  mutation addUser(
-    $firstname: String!
-    $lastname: String!
-    $email: String!
-    $password: String!
-  ) {
-    addUser(
-      firstNameDoc: $firstname
-      lastNameDoc: $lastname
-      email: $email
-      password: $password
-    ) {
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
       token
       user {
         _id
-        firstNameDoc
-        lastNameDoc
+        username
       }
     }
   }
 `;
 
-export const ADD_PATIENT = gql`
-  mutation addThought(
-    $patfirstname: String!
-    $patlastname: String!
-    $patemail: String!
-    $patphone: String!
-    $patappointment: Date!
+export const ADD_APPOINTMENT = gql`
+  mutation addAppointment(
+    $firstNamePat: String!
+    $lastNamePat: String!
+    $emailPat: String!
+    $phone: String!
+    $startDate: String!
+    $endDate: String!
+    $description: String!
   ) {
-    addPatient(
-      firstnamePat: $patfirstname
-      lastNamePat: $patlastname
-      emailPat: $patemail
-      phone: $patphone
-      appointmentDate: $patappointment
+    addAppointment(
+      firstNamePat: $firstNamePat
+      lastNamePat: $lastNamePat
+      emailPat: $emailPat
+      phone: $phone
+      startDate: $startDate
+      endDate: $endDate
+      description: $description
     ) {
       _id
-      firstnamePat
+      firstNamePat
       lastNamePat
       emailPat
       phone
-      appointmentDate
+      startDate
+      endDate
+      description
     }
   }
 `;

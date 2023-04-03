@@ -1,52 +1,55 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  type Doctor {
+  type User {
     _id: ID!
-    firstNameDoc: String!
-    lastNameDoc: String!
-    emailDoc: String!
-    patients: [Patient]
+    username: String!
+    email: String!
+    password: String!
+    appointments: [Appointment]!
   }
 
-  type Patient {
+  type Appointment {
     _id: ID!
     firstNamePat: String!
     lastNamePat: String!
     emailPat: String!
     phone: String!
-    appointmentDate: String
+    startDate: String!
+    endDate: String!
+    description: String!
   }
 
   type Auth {
     token: ID!
-    user: Doctor
-  }
-
-  input PatientInput {
-    firstName: String!
-    lastName: String!
-    email: String!
-    phone: String!
-    appointmentDate: String
+    user: User
   }
 
   type Query {
-    doctors: [Doctor]
-    doctor(_id: ID!): Doctor
-    patient(_id: ID!): Patient
+    users: [User]
+    user(username: String!): User
+    appointments: [Appointment]!
+    appointment(appointmentId: ID!): Appointment
+    me: User
   }
 
   type Mutation {
+    addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addDoctor(
-      firstName: String!
-      lastName: String!
-      email: String!
-      password: String!
-    ): Auth
-    addPatient(patientData: PatientInput!): Doctor
-    removePatient(patientId: ID!): Doctor
+    addAppointment(
+      firstNamePat: String!
+      lastNamePat: String!
+      emailPat: String!
+      phone: String!
+      startDate: String!
+      endDate: String!
+      description: String!
+    ): Appointment
+    removeAppointment(appointmentId: ID!): Appointment
+  }
+  schema {
+    query: Query
+    mutation: Mutation
   }
 `;
 

@@ -1,50 +1,62 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-  query user($firstname: String!, $lastname: String! ) {
-    user(firstNameDoc: $firstname
-        lastNameDoc: $lastname 
-        ) {
+  query user($username: String!) {
+    user(username: $username) {
       _id
-      firstNameDoc
-      lastNameDoc
-      patients {
+      username
+      email
+      appointments {
         _id
-        firstnamePat
+        firstNamePat
         lastNamePat
         emailPat
         phone
-        appointmentDate
+        startDate
+        endDate
+        description
+      }
+    }
+  }
+`;
+export const QUERY_USERS = gql`
+  query getUsers {
+    users {
+      _id
+      username
+      email
     }
   }
 `;
 
-export const QUERY_PATIENTS = gql`
-  query getPatients {
-    patients {
+export const QUERY_APPOINTMENTS = gql`
+  query getAppointments {
+    appointments {
       _id
-      firstnamePat
+      firstNamePat
       lastNamePat
       emailPat
       phone
-      appointmentDate
+      startDate
+      endDate
+      description
+      createdAt
     }
   }
 `;
 
-export const QUERY_SINGLE_PATIENT = gql`
-  query getSingleThought($patientId: ID!) {
-    thought(patientId: $patientId) {
+export const QUERY_SINGLE_APPOINTMENT = gql`
+  query getSingleAppointment($appointmentId: ID!) {
+    appointment(appointmentId: $appointmentId) {
       _id
-      thoughtText
-      thoughtAuthor
+      firstNamePat
+      lastNamePat
+      emailPat
+      phone
+      startDate
+      endDate
+      description
       createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-      }
     }
   }
 `;
@@ -53,15 +65,19 @@ export const QUERY_ME = gql`
   query me {
     me {
       _id
-      firstNameDoc
-      lastNameDoc
-      patients {
+      username
+      email
+      appointments {
         _id
-        firstnamePat
+        firstNamePat
         lastNamePat
         emailPat
         phone
-        appointmentDate
+        startDate
+        endDate
+        description
+
+        createdAt
       }
     }
   }
