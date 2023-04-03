@@ -30,30 +30,27 @@ export const ADD_APPOINTMENT = gql`
     $lastNamePat: String!
     $emailPat: String!
     $phone: String!
-    $appointmentDate: String!
-    $time: String!
+    $startDate: String!
+    $endDate: String!
     $description: String!
-    $duration: String!
   ) {
     addAppointment(
       firstNamePat: $firstNamePat
       lastNamePat: $lastNamePat
       emailPat: $emailPat
       phone: $phone
-      appointmentDate: $appointmentDate
-      time: $time
+      startDate: $startDate
+      endDate: $endDate
       description: $description
-      duration: $duration
     ) {
       _id
       firstNamePat
       lastNamePat
       emailPat
       phone
-      appointmentDate
-      time
+      startDate
+      endDate
       description
-      duration
     }
   }
 `;

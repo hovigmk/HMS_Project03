@@ -12,10 +12,9 @@ export const QUERY_USER = gql`
         lastNamePat
         emailPat
         phone
-        appointmentDate
-        time
+        startDate
+        endDate
         description
-        duration
       }
     }
   }
@@ -38,10 +37,9 @@ export const QUERY_APPOINTMENTS = gql`
       lastNamePat
       emailPat
       phone
-      appointmentDate
-      time
+      startDate
+      endDate
       description
-      duration
       createdAt
     }
   }
@@ -55,10 +53,9 @@ export const QUERY_SINGLE_APPOINTMENT = gql`
       lastNamePat
       emailPat
       phone
-      appointmentDate
-      time
+      startDate
+      endDate
       description
-      duration
       createdAt
     }
   }
@@ -76,10 +73,10 @@ export const QUERY_ME = gql`
         lastNamePat
         emailPat
         phone
-        appointmentDate
-        time
+        startDate
+        endDate
         description
-        duration
+
         createdAt
       }
     }

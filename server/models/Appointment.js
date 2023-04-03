@@ -25,22 +25,19 @@ const appointmentSchema = new Schema({
       "Must use a valid phone number",
     ],
   },
-  appointmentDate: {
+  startDate: {
     type: Date,
     required: true,
   },
-  time: {
-    type: String,
+  endDate: {
+    type: Date,
     required: true,
   },
   description: {
     type: String,
     required: true,
   },
-  duration: {
-    type: String,
-    required: true,
-  },
+
   createdAt: {
     type: Date,
     default: Date.now,

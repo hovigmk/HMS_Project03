@@ -35,11 +35,10 @@ const SingleAppointment = () => {
           {appointment.firstNamePat}
           {appointment.lastNamePat}
           {appointment.emailPat}
-          {appointment.phonePat}
-          {appointment.appointmentPat}
-          {appointment.time}
+          {appointment.phone}
+          {appointment.startDate}
+          {appointment.endDate}
           {appointment.description}
-          {appointment.duration}
           {appointment.createdAt}
         </blockquote>
       </div>

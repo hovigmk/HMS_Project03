@@ -29,15 +29,7 @@ const AppNavbar = () => {
                   <Nav.Link as={Link} to="/AppointmentList">
                     See Your Appointments
                   </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-                </>
-              ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>
-                  Login/Sign Up
-                </Nav.Link>
-              )}
-               {Auth.loggedIn() ? (
-                <>
+
                   <Nav.Link as={Link} to="/addAppointment">
                     Book an Appointment Here
                   </Nav.Link>

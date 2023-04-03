@@ -15,10 +15,9 @@ const typeDefs = gql`
     lastNamePat: String!
     emailPat: String!
     phone: String!
-    appointmentDate: String!
-    time: String!
+    startDate: String!
+    endDate: String!
     description: String!
-    duration: String!
   }
 
   type Auth {
@@ -42,10 +41,9 @@ const typeDefs = gql`
       lastNamePat: String!
       emailPat: String!
       phone: String!
-      appointmentDate: String!
-      time: String!
+      startDate: String!
+      endDate: String!
       description: String!
-      duration: String!
     ): Appointment
     removeAppointment(appointmentId: ID!): Appointment
   }
