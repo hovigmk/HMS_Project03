@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
+import { Navbar, Nav, Container, Modal, Tab, Row } from "react-bootstrap";
 import SignUp from "../pages/Signup";
 import Login from "../pages/Login";
 
@@ -14,45 +14,53 @@ const AppNavbar = () => {
     <>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
-          <Navbar.Brand as={Link} to="/">
-            HMS
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar" />
-          <Navbar.Collapse id="navbar" className="d-flex flex-row-reverse">
-            <Nav className="ml-auto d-flex">
-              <Nav.Link as={Link} to="/Signup">
-                Sign Up
-              </Nav.Link>
-              {/* if user is logged in show saved appointments and logout */}
-              {Auth.loggedIn() ? (
-                <>
-                  <Nav.Link as={Link} to="/AppointmentList">
-                    See Your Appointments
-                  </Nav.Link>
+          <Row>
+            <Navbar.Brand as={Link} to="/">
+              HMS
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="navbar" />
+            <Navbar.Collapse id="navbar" className="d-flex flex-row-reverse">
+              <Nav className="ml-auto d-flex">
+                {/* if user is logged in show saved appointments and logout */}
+                {Auth.loggedIn() ? (
+                  <>
+                    <Nav.Link as={Link} to="/AppointmentList">
+                      See Your Appointments
+                    </Nav.Link>
 
-                  <Nav.Link as={Link} to="/addAppointment">
-                    Book an Appointment Here
-                  </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-                </>
-              ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>
-                  Login/Sign Up
-                </Nav.Link>
-              )}
-            </Nav>
-          </Navbar.Collapse>
+                    <Nav.Link as={Link} to="/addAppointment">
+                      Book an Appointment Here
+                    </Nav.Link>
+                    <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  </>
+                ) : (
+                  <>
+                    <Nav.Item>
+                      <Nav.Link as={Link} to="/Login">
+                        Login
+                      </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link as={Link} to="/Signup">
+                        Sign Up
+                      </Nav.Link>
+                    </Nav.Item>
+                  </>
+                )}
+              </Nav>
+            </Navbar.Collapse>
+          </Row>
         </Container>
       </Navbar>
       {/* set modal data up */}
-      <Modal
+      {/* <Modal
         size="lg"
         show={showModal}
         onHide={() => setShowModal(false)}
         aria-labelledby="signup-modal"
-      >
-        {/* tab container to do either signup or login component */}
-        <Tab.Container defaultActiveKey="login">
+      > */}
+      {/* tab container to do either signup or login component */}
+      {/* <Tab.Container defaultActiveKey="login">
           <Modal.Header closeButton>
             <Modal.Title id="signup-modal">
               <Nav variant="pills">
@@ -65,8 +73,8 @@ const AppNavbar = () => {
               </Nav>
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <Tab.Content>
+          <Modal.Body> */}
+      {/* <Tab.Content>
               <Tab.Pane eventKey="login">
                 <Login handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
@@ -76,7 +84,7 @@ const AppNavbar = () => {
             </Tab.Content>
           </Modal.Body>
         </Tab.Container>
-      </Modal>
+      </Modal> */}
     </>
   );
 };
