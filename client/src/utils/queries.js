@@ -21,7 +21,7 @@ export const QUERY_USER = gql`
   }
 `;
 export const QUERY_USERS = gql`
-  query getusers {
+  query getUsers {
     users {
       _id
       username

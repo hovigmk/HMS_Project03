@@ -26,23 +26,23 @@ export const ADD_USER = gql`
 
 export const ADD_APPOINTMENT = gql`
   mutation addAppointment(
-    $patFirstName: String!
-    $patLastName: String!
-    $patEmail: String!
-    $patPhone: String
-    $patAppointment: String!
-    $patAppTime: String!
-    $appDes: String!
+    $firstNamePat: String!
+    $lastNamePat: String!
+    $emailPat: String!
+    $phone: String
+    $appointmentDate: String!
+    $time: String!
+    $description: String!
     $duration: String!
   ) {
     addAppointment(
-      firstNamePat: $patFirstName
-      lastNamePat: $patLastName
-      emailPat: $patEmail
-      phone: $patPhone
-      appointmentDate: $patAppointment
-      time: $patAppTime
-      description: $appDes
+      firstNamePat: $firstNamePat
+      lastNamePat: $lastNamePat
+      emailPat: $emailPat
+      phone: $phone
+      appointmentDate: $appointmentDate
+      time: $time
+      description: $description
       duration: $duration
     ) {
       _id

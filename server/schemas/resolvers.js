@@ -65,7 +65,7 @@ const resolvers = {
       if (context.user) {
         const appointment = await Appointment.create({
           firstNamePat,
-          lastNamePat,
+          lastNamePat: context.user.username,
           emailPat,
           phone,
           appointmentDate,

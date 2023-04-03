@@ -12,7 +12,7 @@ import Home from "./Component/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import SingleAppointment from "./Component/SingleAppointment";
-// import Profile from "./pages/Profile";
+
 import Header from "./Component/Header";
 import Profile from "./Component/Profile";
 // import Footer from "./components/Footer";
