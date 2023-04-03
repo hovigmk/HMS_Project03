@@ -49,7 +49,7 @@ We are excited that you are reading this and are willing to contribute. No need 
 Feel free to check [issues page](https://github.com/hovigmk/HMS_Project03/issues) 
      
 ## 🤔 [FAQs](#table-of-contents)
-Please contact me using the following links :
-[Hovig Makssi Kalayjian](https://github.com/hovigmk)
-[Michael Ponte](https://github.com/MichaelPonte)
+Please contact me using the following links :</br>
+[Hovig Makssi Kalayjian](https://github.com/hovigmk)</br>
+[Michael Ponte](https://github.com/MichaelPonte)</br>
 [Vimukthi Gunasekara](https://github.com/VimukthiGunasekara)

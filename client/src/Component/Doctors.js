@@ -1,4 +1,8 @@
 import { useEffect, useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
 
 const Doctors = () => {
 
@@ -14,36 +18,41 @@ const Doctors = () => {
         getData();
     },)
     return (
-        <div class="col-lg-12 col-md-6 col-sm-12 ">
-            <h2 class="title mt-3 mb-3 text-center text-secondary text center">
-                List of Doctors
-            </h2>
-            <div class="table-responsive caSection">
-                <table class="table table-striped">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>No</th>
-                            <th>Label</th>
-                            <th>Header</th>
-                            <th>Column</th>
-                            <th>Record Data</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {record.slice(0, 10).map((output) =>
-                            <tr>
-                                <td>{output.id}</td>
-                                <td>{output.name}</td>
-                                <td>{output.email}</td>
-                                <td>{output.username}</td>
-                                <td>{output.website}</td>
-                                <td></td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <Container>
+            <Row >
+                <Col >
+                    <div class="col-lg-12 col-md-6 col-sm-12 ">
+                        <h2 class="title mt-3 mb-3 text-center text-secondary text center ">
+                            List of Doctors
+                        </h2>
+                        <div class="table-responsive caSection bg-secondary p-4">
+                            <Table striped hover >
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Username</th>
+                                        <th>Username</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {record.slice(0, 7).map((output) =>
+                                        <tr>
+                                            <td>{output.id}</td>
+                                            <td>{output.name}</td>
+                                            <td>{output.email}</td>
+                                            <td>{output.username}</td>
+                                            <td>{output.website}</td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </Table>
+                        </div>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
