@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "## Description",
   "main": "server/server.js",
+  "homepage": "https://hovigmk.github.io/HMS_Project03/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
