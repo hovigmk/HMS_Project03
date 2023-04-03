@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Component/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-// import SingleThought from "./pages/SingleAppointment";
+import SingleAppointment from "./Component/SingleAppointment";
 // import Profile from "./pages/Profile";
 import Header from "./Component/Header";
 import Profile from "./Component/Profile";

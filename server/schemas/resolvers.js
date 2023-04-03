@@ -50,11 +50,22 @@ const resolvers = {
       return { token, user };
     },
     //Add patient to doctor's list
-    addAppointment: async (parent, { patientData }, context) => {
+    addAppointment: async (
+      parent,
+      { firstNamePat },
+      { lastNamePat },
+      { emailPat },
+      { phone },
+      { appointmentDate },
+      { time },
+      { description },
+      { duration },
+      context
+    ) => {
       if (context.user) {
         const appointment = await Appointment.create({
           firstNamePat,
-          lastNamePat: context.user.username,
+          lastNamePat,
           emailPat,
           phone,
           appointmentDate,

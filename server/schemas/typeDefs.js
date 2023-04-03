@@ -26,16 +26,6 @@ const typeDefs = gql`
     user: User
   }
 
-  // input PatientInput {
-  //   firstName: String!
-  //   lastName: String!
-  //   email: String!
-  //   phone: String!
-  //   appointmentDate: String!
-  //   time: String!
-  //   description: String!
-  // }
-
   type Query {
     users: [User]
     user(username: String!): User
@@ -47,7 +37,16 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addAppointment( firstNamePat: String!, lastNamePat: String!, emailPat: String!,phone: String!, appointmentDate: String!, time: String!,  description: String!, duration: String!): Appointment
+    addAppointment(
+      firstNamePat: String!
+      lastNamePat: String!
+      emailPat: String!
+      phone: String!
+      appointmentDate: String!
+      time: String!
+      description: String!
+      duration: String!
+    ): Appointment
     removeAppointment(appointmentId: ID!): Appointment
   }
 `;

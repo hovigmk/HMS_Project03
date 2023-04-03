@@ -5,7 +5,8 @@ import { useMutation } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../utils/mutations";
 import { QUERY_APPOINTMENTS, QUERY_ME } from "../utils/queries";
 
-import Auth from "../../utils/auth";
+import Auth from "../utils/auth";
+// import Calendar from "./Calendar";
 
 const AppointmentForm = () => {
   const [firstNamePat, setfirstNamePat] = useState("");
@@ -141,10 +142,11 @@ const AppointmentForm = () => {
               ></textarea>
             </div>
             <div className="col-12 col-lg-9">
+              {/* <Calendar value={appointmentDate} /> */}
               <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
+                name="Date"
+                placeholder="Pick a Date"
+                value={appointmentDate}
                 className="form-input w-100"
                 style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleChange}
@@ -152,9 +154,9 @@ const AppointmentForm = () => {
             </div>
             <div className="col-12 col-lg-9">
               <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
+                name="time"
+                placeholder="time"
+                value={time}
                 className="form-input w-100"
                 style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleChange}
@@ -162,13 +164,26 @@ const AppointmentForm = () => {
             </div>
             <div className="col-12 col-lg-9">
               <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
+                name="Description"
+                placeholder="Reason for appointment"
+                value={description}
                 className="form-input w-100"
                 style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleChange}
               ></textarea>
+            </div>
+            <div className="form-group">
+              <label>Duration</label>
+              <select
+                onChange={handleChange}
+                className="form-control"
+                value={this.state.duration}
+              >
+                <option value="15">15 min</option>
+                <option value="30">30 min</option>
+                <option value="45">45 min</option>
+                <option value="60">60 min</option>
+              </select>
             </div>
 
             <div className="col-12 col-lg-3">
@@ -185,7 +200,7 @@ const AppointmentForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{" "}
+          You need to be logged in to Book an Appointment. Please{" "}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
