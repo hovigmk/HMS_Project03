@@ -27,6 +27,8 @@ Github Page : https://github.com/hovigmk/HMS_Project03
 
 ## 📺 [Mock-Up](#table-of-contents)
 
+![Screenshot](./screenshots.png)
+
 ## ⚙️ [Installation](#table-of-contents)
 Use your terminal to clone or download or copy the zip file to a directory of your choice. Then open the file in VS Code or whatever editor you use. In VS Code, open the terminal and navigate to HMS_Project03 in the root directory. 
 
